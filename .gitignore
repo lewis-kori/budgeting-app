@@ -1,0 +1,7 @@
+.vscode
+.env
+*.pyc
+.DS_Store
+logs
+media/
+db.sqlite3
