@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework',
     'rest_framework_simplejwt',
+
+    # dev defined apps
+    'tenants',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -107,6 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.UserAccount'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
