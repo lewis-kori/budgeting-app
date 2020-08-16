@@ -9,7 +9,7 @@ class Command(MigrationCommand):
         
     def handle(self, *args, **kwargs):
         try:
-            from tenants.models import Tenant
+            from ...models import Tenant
             tenants = Tenant.objects.all()
 
             if tenants.exists():
