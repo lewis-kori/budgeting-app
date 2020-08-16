@@ -88,13 +88,25 @@ WSGI_APPLICATION = 'budgeting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# dev lite db
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DEV_DB_ENGINE'),
+#         'NAME': config('DEV_DB_NAME'),
+#     }
+# }
+
+# production db
 DATABASES = {
     'default': {
-        'ENGINE': config('DEV_DB_ENGINE'),
-        'NAME': config('DEV_DB_NAME'),
+        'ENGINE': config('DB_ENGINE'),
+        'NAME':  config('DB_NAME'),  # change in prod
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', cast=int),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
