@@ -41,7 +41,11 @@ class UserAccount(AbstractUser):
     employee_id = models.CharField(max_length=255)
     role = models.CharField(max_length=40, choices=USER_ROLES, default='Staff')
 
-    username_field = 'email'
+    USERNAME_FIELD = 'email'
+
+
+    REQUIRED_FIELDS = ['first_name', 'last_name',]
+
     objects = UserAccountManager()
 
     class Meta:
