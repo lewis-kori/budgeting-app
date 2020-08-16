@@ -24,6 +24,9 @@ urlpatterns = [
     # third party apps urls
     path('api/v1/auth/', include('djoser.urls')),
     path('api/v1/auth/', include('djoser.urls.jwt')),
+
+    # dev defined app routes
+    path('api/v1/',include('tenants.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

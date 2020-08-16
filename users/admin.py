@@ -11,5 +11,6 @@ class UserAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(User, UserAdmin)
 
-admin.site.site_title = 'Budgeting Admin'
-admin.site.site_name = 'Budgeting'
+admin.site.site_header = 'Budgeting Admin'
+admin.site.site_title = 'Budgeting'
+
