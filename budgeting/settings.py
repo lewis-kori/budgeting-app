@@ -28,12 +28,15 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '.localhost',]
 
 CORS_ORIGIN_ALLOW_ALL=True
 
 # Application definition
 SITE_ID = 1
+
+SITE_DOMAIN= config('SITE_DOMAIN')
+SITE_NAME = config('SITE_NAME')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -63,6 +66,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # custom middleware
+    'tenants.middlewares.TenantMiddleware',
 ]
 
 ROOT_URLCONF = 'budgeting.urls'
