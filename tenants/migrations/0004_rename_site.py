@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('tenants', '0001_initial'),
         ('tenants', '0002_auto_20200816_0605'),
+        ('tenants', '0003_tenant_tenant_id'),
         ('sites', '0002_alter_domain_unique'),
     ]
 

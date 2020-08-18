@@ -15,8 +15,9 @@ class Tenant(CommonInfo):
     business_phone_number = models.CharField(max_length=250)
     business_email = models.EmailField()
     is_active = models.BooleanField(default=True)
-    schema = models.CharField(max_length=255, blank=True)
-    subdomain = models.CharField(max_length=255, blank=True)
+    schema = models.CharField(max_length=255)
+    subdomain = models.CharField(max_length=255)
+    tenant_id = models.SlugField(blank=True)
 
     def __str__(self):
         return self.name

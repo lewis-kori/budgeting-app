@@ -1,6 +1,7 @@
 #!/bin/bash
 sleep 2 #sleep the container for 2 seconds to allow the postgres container to start up and allow connections
 python manage.py migrate 
+python manage.py migrate_all_schemas  # Apply database migrations to all schemas
 python manage.py collectstatic --noinput  # Collect static files
 
 # # Prepare log files
