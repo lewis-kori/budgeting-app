@@ -17,6 +17,7 @@ class Tenant(CommonInfo):
     is_active = models.BooleanField(default=True)
     schema = models.CharField(max_length=255)
     subdomain = models.CharField(max_length=255)
+    tenant_id = models.SlugField(blank=True)
 
     def __str__(self):
         return self.name
