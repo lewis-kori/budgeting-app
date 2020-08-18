@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -187,6 +188,6 @@ DJOSER = {
 
 SIMPLE_JWT = {
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=15),
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=2),
     'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
 }
