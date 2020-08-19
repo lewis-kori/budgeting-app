@@ -1,3 +1,6 @@
+import random
+import string
+
 from django.contrib.sites.models import Site
 from django.db import connection
 
@@ -31,3 +34,9 @@ def set_tenant_schema_from_request(request):
     schema = tenant_schema_from_request(request)
     with connection.cursor() as cursor:
         cursor.execute(f'SET search_path to {schema}')
+
+NUMERIC_DIGITS = string.digits
+NUM_LENGTH = 4
+
+def generate_random_num(digits=NUMERIC_DIGITS,length=NUM_LENGTH):
+    return "".join(random.choice(digits) for _ in range(length))

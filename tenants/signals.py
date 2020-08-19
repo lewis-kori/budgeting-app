@@ -5,10 +5,11 @@ from django.core.management import call_command
 from django.db import connection
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.utils.text import slugify
 from django.utils.timezone import datetime
 
 from .models import Tenant
-
+from .utils import generate_random_num
 
 def populate_client_schema(client):
 
@@ -22,10 +23,18 @@ def populate_client_schema(client):
 def name_schema_and_subdomain(sender, instance, *args, **kwargs):
     site = Site.objects.get_current()
     site_domain = site.domain
+
+    # populate the schema and subdomain info
     if not instance.schema and not instance.subdomain:
         joined_name = instance.name.replace(" ", "").lower()
         instance.schema = joined_name
         instance.subdomain = f'{joined_name}.{site_domain}'
+
+    if not instance.tenant_id:
+        joined_name = instance.name.replace(" ", "").lower()
+        substring = joined_name[0:3]
+        random_num = generate_random_num()
+        instance.tenant_id = slugify(f'{substring} {random_num}').upper()
 
 
 @receiver(post_save, sender=Tenant)
