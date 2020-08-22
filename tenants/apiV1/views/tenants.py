@@ -4,19 +4,21 @@ from rest_framework.response import Response
 from rest_framework.status import (HTTP_200_OK, HTTP_400_BAD_REQUEST,
                                    HTTP_403_FORBIDDEN)
 from rest_framework.views import APIView
-
+from rest_framework.permissions import AllowAny
 from ...models import Tenant
 from ..serializers.tenants import TenantSerializer
 
 
 # retrieves a list of all tenants
 class TenantListCreateAPIView(ListCreateAPIView):
+    permission_classes = [AllowAny,]
     queryset = Tenant.objects.all()
     serializer_class = TenantSerializer
 
 
 # retrieves an instance of a tenant, use this for login credentials
 class TenantInfoAPIView(APIView):
+    permission_classes = [AllowAny,]
     def post(self, request, **kwargs):
         data = request.data
 
@@ -25,7 +27,7 @@ class TenantInfoAPIView(APIView):
 
             if tenant.is_active:
                 data = {
-                    'id': tenant.id,
+                    'name':tenant.name,
                     'subdomain': tenant.subdomain,
                     'organization_id': tenant.tenant_id
                 }

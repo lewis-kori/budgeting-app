@@ -15,8 +15,8 @@ def populate_client_schema(client):
 
     with connection.cursor() as cursor:
         cursor.execute(f'SET search_path TO {client.schema}')
-        cursor.execute(f"INSERT INTO tenants_tenant (name,business_email,business_phone_number,subdomain,schema,is_active,created,updated) " \
-        f"VALUES ('{client.name}','{client.business_email}','{client.business_phone_number}','{client.subdomain}','{client.schema}',true,'{datetime.now()}','{datetime.now()}');")
+        cursor.execute(f"INSERT INTO tenants_tenant (name,business_email,business_phone_number,subdomain,schema,tenant_id,is_active,created,updated) " \
+        f"VALUES ('{client.name}','{client.business_email}','{client.business_phone_number}','{client.subdomain}','{client.schema}','{client.tenant_id}',true,'{datetime.now()}','{datetime.now()}');")
 
 
 @receiver(pre_save, sender=Tenant)

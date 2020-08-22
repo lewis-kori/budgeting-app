@@ -38,7 +38,7 @@ class UserAccount(AbstractUser):
                                    blank=True)
     email = models.EmailField(unique=True)
     photo = models.ImageField(upload_to='users/photos', null=True, blank=True)
-    employee_id = models.CharField(max_length=255)
+    employee_id = models.CharField(max_length=255, null=True, blank=True)
     role = models.CharField(max_length=40, choices=USER_ROLES, default='Staff')
 
     USERNAME_FIELD = 'email'
