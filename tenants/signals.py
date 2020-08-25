@@ -21,7 +21,7 @@ def populate_client_schema(client):
 
 @receiver(pre_save, sender=Tenant)
 def name_schema_and_subdomain(sender, instance, *args, **kwargs):
-    site = Site.objects.get_current()
+    site = Site.objects.get(id=2)
     site_domain = site.domain
 
     # populate the schema and subdomain info

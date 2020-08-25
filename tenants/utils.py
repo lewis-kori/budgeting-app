@@ -19,7 +19,7 @@ def get_tenants_map():
 # find the tenant schema from request
 def tenant_schema_from_request(request):
     hostname = host_name_from_request(request)
-    site = Site.objects.get_current()
+    site = Site.objects.get(id=2)
 
     # use the postgres public schema if no subdomain specified on request
     if hostname == site.domain:

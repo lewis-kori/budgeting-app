@@ -38,6 +38,8 @@ SITE_ID = 1
 SITE_DOMAIN= config('SITE_DOMAIN')
 SITE_NAME = config('SITE_NAME')
 
+FRONTEND_HOST = config('FRONTEND_HOST')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

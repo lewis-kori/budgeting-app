@@ -8,6 +8,7 @@ def rename_site_name(apps, schema_editor):
     new_site = Site.objects.filter(id=1)
     
     if not new_site.exists():
+        Site.objects.create(domain=settings.FRONTEND_HOST, name=settings.SITE_NAME)
         Site.objects.create(domain=settings.SITE_DOMAIN, name=settings.SITE_NAME)
 
 class Migration(migrations.Migration):
