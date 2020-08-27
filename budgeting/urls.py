@@ -27,6 +27,7 @@ urlpatterns = [
 
     # dev defined app routes
     path('api/v1/',include('tenants.urls')),
+    path('api/v1/',include('core.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

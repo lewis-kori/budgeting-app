@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
 
     # dev defined apps
+    'core',
     'tenants',
     'users',
 ]
@@ -143,7 +144,7 @@ AUTH_USER_MODEL = 'users.UserAccount'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 

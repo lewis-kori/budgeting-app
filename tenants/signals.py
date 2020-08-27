@@ -11,6 +11,7 @@ from django.utils.timezone import datetime
 from .models import Tenant
 from .utils import generate_random_num
 
+
 def populate_client_schema(client):
 
     with connection.cursor() as cursor:

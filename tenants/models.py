@@ -27,4 +27,4 @@ class Department(CommonInfo):
     name = models.CharField(max_length=255, unique=True)
     
     def __str__(self):
-        self.name
+        return self.name
