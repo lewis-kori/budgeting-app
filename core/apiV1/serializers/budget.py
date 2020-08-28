@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer,SerializerMethodField
 
 from ...models import Budget
 from .account import AccountSerializer
-
+from tenants.apiV1.serializers.departments import DepartmentSerializer
 
 class BudgetSerializer(ModelSerializer):
     class Meta:
@@ -10,6 +10,7 @@ class BudgetSerializer(ModelSerializer):
         fields = '__all__'
 
 class BudgetDetailSerializer(ModelSerializer):
+    department = DepartmentSerializer()
     month = SerializerMethodField()
     source = AccountSerializer()
     class Meta:
