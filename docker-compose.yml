@@ -1,0 +1,60 @@
+version: '3.5'
+services:
+
+  web:
+
+      build: .
+      container_name: budgeting_django
+      restart: unless-stopped
+      volumes:
+      - .:/code
+      - ./gunicorn/logs:/gunicorn/logs
+      - static:/code/static
+      - media:/code/media
+      depends_on:
+          - postgres
+
+  postgres:
+      build: ./postgres
+      container_name: budgeting_db
+      restart: unless-stopped
+      expose:
+        - "5432"
+      environment:
+        LC_ALL: ${LC_ALL}
+        POSTGRES_USER: ${DB_USER}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+        POSTGRES_DB: ${DB_NAME}
+      volumes:
+          - pgdata:/var/lib/postgresql/data/
+
+  pgadmin:
+      image: dpage/pgadmin4
+      container_name: budgeting_pg_admin
+      depends_on:
+        - postgres
+      ports:
+        - "5052:80"
+      environment:
+        PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      restart: always
+
+  nginx:
+      restart: always
+      build: ./nginx/
+      container_name: budgeting_web_server
+      volumes:
+        - ./nginx/:/etc/nginx/conf.d
+        - ./nginx/logs/:/code/logs
+        - static:/code/static
+        - media:/code/media
+      ports:
+        - "127.0.0.1:8000:80"
+      links:
+        - web
+
+volumes:
+  pgdata:
+  media:
+  static:
