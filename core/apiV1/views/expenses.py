@@ -1,6 +1,7 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView,ListAPIView
+from rest_framework.generics import (ListAPIView, ListCreateAPIView,
+                                     RetrieveUpdateAPIView)
 
-from ...models import Expense,Budget
+from ...models import Budget, Expense
 from ..serializers.expenses import ExpenseDetailSerializer, ExpenseSerializer
 
 
@@ -13,6 +14,7 @@ class ExpenseListCreateAPIView(ListCreateAPIView):
             return ExpenseDetailSerializer
         return super().get_serializer_class()
 
+
 class ExpenseRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Expense.objects.all()
     serializer_class = ExpenseSerializer
@@ -22,10 +24,12 @@ class ExpenseRetrieveUpdateAPIView(RetrieveUpdateAPIView):
             return ExpenseDetailSerializer
         return super().get_serializer_class()
 
+
 # departmental expenses
 class DepartmentalExpenses(ListAPIView):
     serializer_class = ExpenseDetailSerializer
 
     def get_queryset(self):
-        departmental_expenses = Expense.objects.filter(budget__department__id=self.kwargs['department_id'])
+        departmental_expenses = Expense.objects.filter(
+            budget__department__id=self.kwargs['department_id'])
         return departmental_expenses

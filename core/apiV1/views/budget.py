@@ -1,7 +1,9 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import (ListAPIView, ListCreateAPIView,
+                                     RetrieveUpdateAPIView)
+
+from tenants.models import Department
 
 from ...models import Budget
-from tenants.models import Department
 from ..serializers.budget import BudgetDetailSerializer, BudgetSerializer
 
 
@@ -23,3 +25,13 @@ class BudgetRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         if self.request.method == 'GET':
             return BudgetDetailSerializer
         return super().get_serializer_class()
+
+
+# departmental budgets
+class DepartmentalBudgetsListAPIView(ListAPIView):
+    serializer_class = BudgetDetailSerializer
+
+    def get_queryset(self):
+        department = Department.objects.get(id=self.kwargs['department_id'])
+        departmental_budgets = department.budgets.all()
+        return departmental_budgets
