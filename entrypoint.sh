@@ -11,7 +11,7 @@ touch /gunicorn/logs/error.log
 # Start Gunicorn processes
 echo Starting Gunicorn.
 exec gunicorn budgeting.wsgi:application \
-    --bind 0.0.0.0:8000 \
+    --bind 0.0.0.0:8099 \
     --workers 3 \
     --log-level=info \
     --access-logfile=/gunicorn/logs/access.log \
