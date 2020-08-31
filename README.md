@@ -2,6 +2,8 @@
 
 The project is built with django and django restframework with a vue.js frontend.
 
+## [Live demo](https://defyne.lewiskori.com/)
+
 ![django-multitenant](https://res.cloudinary.com/lewiskori/image/upload/v1598773348/Screenshot_2020-08-30_vue-django-multitenant_wlrpcz.png)
 
 Frontend code can be [found here](https://github.com/lewis-kori/vue-django-multitenant)
