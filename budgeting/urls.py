@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('/', admin.site.urls),
+    path('', admin.site.urls),
 
     # third party apps urls
     path('api/v1/auth/', include('djoser.urls')),
